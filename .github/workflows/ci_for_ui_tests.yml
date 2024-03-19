@@ -28,5 +28,5 @@ jobs:
       run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
 
     - name: Run tests
-      run: python C:\Users\rasha\PycharmProjects\terminalxAutomationProject\tests\ui_tests\ui_test_runner.py
-      working-directory: ./api_tests
+      run: python ui_test_runner.py
+      working-directory: ./tests/ui_tests
