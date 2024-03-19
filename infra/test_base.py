@@ -6,7 +6,7 @@ class TestBase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         # Load the test configuration
-        with open('C:/Users/rasha/PycharmProjects/terminalxAutomationProject/test_config.json', encoding='utf-8') as config_file:
+        with open('/tests/ui_tests/test_config.json', encoding='utf-8') as config_file:
             cls.config = json.load(config_file)
 
     def setUp(self):

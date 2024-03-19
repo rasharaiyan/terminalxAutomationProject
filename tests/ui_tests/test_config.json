@@ -1,0 +1,22 @@
+{
+  "Tests": {
+    "baseURL": "https://www.terminalx.com/women?utm_source=google&utm_medium=cpc&utm_campaign=10.pmax.converse.nb&gad_source=1&gclid=CjwKCAjw7-SvBhB6EiwAwYdCAXFgQBh5SGgzkOFJ8MC8qT0Z1F-YiC3nNBhJZgWH3fel5x4fNEeubxoC8ekQAvD_BwE",
+    "queries": [
+      {
+        "searchQuery": "Tommy Jeans",
+        "expectedResult": "תוצאות חיפוש עבור: 'Tommy Jeans'"
+      }
+    ],
+    "screenSizes": [
+      {"width": 1280, "height": 720},
+      {"width": 1024, "height": 768},
+      {"width": 640, "height": 480},
+      {"width": 360, "height": 640}
+    ],
+    "loginCredentials": {
+      "email": "",
+      "password": "",
+      "expected_user_name": ""
+    }
+  }
+}
