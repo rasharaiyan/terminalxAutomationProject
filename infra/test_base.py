@@ -2,6 +2,7 @@ import unittest
 import json
 from selenium import webdriver
 import os
+from selenium.webdriver.chrome.options import Options
 
 
 class TestBase(unittest.TestCase):
