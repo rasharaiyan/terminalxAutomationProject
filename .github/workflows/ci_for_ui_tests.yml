@@ -1,3 +1,6 @@
+name: Selenium Test
+on: [push]
+
 jobs:
   build:
     runs-on: ubuntu-latest
