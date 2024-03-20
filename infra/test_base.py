@@ -7,8 +7,8 @@ import os
 class TestBase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        # Construct the path to the test configuration file relative to this script
-        config_path = os.path.join(os.path.dirname(__file__), 'test_config.json')
+        base_dir = os.path.dirname(os.path.dirname(__file__))
+        config_path = os.path.join(base_dir, 'tests', 'ui_tests', 'test_config.json')
         # Load the test configuration
         with open(config_path, encoding='utf-8') as config_file:
             cls.config = json.load(config_file)
