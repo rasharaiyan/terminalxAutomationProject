@@ -1,12 +1,16 @@
 import unittest
 import json
 from selenium import webdriver
+import os
+
 
 class TestBase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        # Construct the path to the test configuration file relative to this script
+        config_path = os.path.join(os.path.dirname(__file__), 'test_config.json')
         # Load the test configuration
-        with open('/tests/ui_tests/test_config.json', encoding='utf-8') as config_file:
+        with open(config_path, encoding='utf-8') as config_file:
             cls.config = json.load(config_file)
 
     def setUp(self):
