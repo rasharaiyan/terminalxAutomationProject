@@ -16,7 +16,7 @@
     "loginCredentials": {
       "email": "",
       "password": "",
-      "expected_user_name": ""
+      "expected_user_name": " "
     }
   }
 }
