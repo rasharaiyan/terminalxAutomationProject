@@ -27,6 +27,7 @@ jobs:
     - name: Set PYTHONPATH
       run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
 
+
     - name: Run tests
       run: python ui_test_runner.py
       working-directory: ./tests/ui_tests
