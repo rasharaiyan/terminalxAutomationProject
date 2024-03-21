@@ -1,0 +1,18 @@
+{
+  "Tests": {
+    "baseURL": "https://www.terminalx.com",
+    "loginCredentials": {
+      "email": "rasharaiyan0805@gmail.com",
+      "password": "Rasha12345!",
+      "expected_user_name": "rasha"
+    },
+    "product": {
+      "qty": 1,
+      "sku": "W18510826303",
+      "qty_update": 2
+    },
+    "customerInfo": {
+      "customer_id": 1177126
+    }
+  }
+}
