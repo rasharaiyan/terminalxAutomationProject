@@ -17,6 +17,9 @@
       "email": "rasharaiyan0805@gmail.com",
       "password": "Rasha12345!",
       "expected_user_name": "rasha"
+    },
+    "product": {
+      "qty_update": 2
     }
   }
 }
