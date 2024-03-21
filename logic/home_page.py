@@ -4,7 +4,6 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-
 class HomePage:
     def __init__(self, driver):
         self.driver = driver
@@ -13,6 +12,10 @@ class HomePage:
         self.color_blindness = "//div[@id='accProfileSection_2']"
         self.checkbox_input = "//input[@id='INDcolorBlindnessSwitchInput']"
         self.close_accessibility_button = "//button[@id='INDcloseAccMenu']"
+        self.cart_item_count = '//*[@id="app-root"]/div[2]/header/div/div[2]/div[3]/div/a[2]/span'
+        self.cart_icon_to_view_cart = '//a[@class="tx-link-a link_2L32 link-minicart_2nwP tx-link_29YD"]'
+        self.loader_visibility = '//div[contains(@class,"loader-container")]'
+        self.cart_item_not_found = '//span[text()="סל הקניות שלך ריק."]'
 
     def navigate_to_site(self, url):
         self.driver.get(url)
@@ -64,3 +67,20 @@ class HomePage:
         close_accessibility_button.click()
         time.sleep(2)
 
+    def cart_icon(self):
+        cart_item_count = WebDriverWait(self.driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, self.cart_item_count))
+        )
+        return cart_item_count.text
+
+    def cart_empty_message(self):
+        WebDriverWait(self.driver, 20).until(
+            EC.invisibility_of_element((By.XPATH, self.loader_visibility))
+        )
+        time.sleep(2)
+        WebDriverWait(self.driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, self.cart_icon_to_view_cart))
+        ).click()
+        return WebDriverWait(self.driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, self.cart_item_not_found))
+        ).is_displayed()
