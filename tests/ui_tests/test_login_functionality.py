@@ -3,6 +3,7 @@ from selenium import webdriver
 from logic.login_functionality import Login
 from infra.test_base import TestBase
 
+
 class TestLoginFunctionality(TestBase):
 
     def setUp(self):
