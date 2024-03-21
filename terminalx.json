@@ -1,7 +1,7 @@
 {
   "url" : "https://www.terminalx.com/women?utm_source=google&utm_medium=cpc&utm_campaign=10.pmax.converse.nb&gad_source=1&gclid=CjwKCAjw7-SvBhB6EiwAwYdCAfQCnhErfMKilLJ9jo1705wGI8Adu-3pn82IBqbdBAixNg4C0htsdRoCJU8QAvD_BwE",
   "url_hub": "http://localhost:4444/wd/hub",
-  "grid": "true",
+  "grid": "false",
 
 
   "capabilities": [
