@@ -32,17 +32,16 @@ pipeline {
             }
         }
         stage('Run Tests') {
-    steps {
+        steps {
         script {
             // Activate the virtual environment
             bat "call ${VENV_DIR}\\Scripts\\activate"
-            // Set PYTHONPATH environment variable
-            bat "set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT}"
-            // Run the test script using the Python interpreter from the virtual environment
-            bat "call ${VENV_DIR}\\Scripts\\python ${PROJECT_ROOT}\\tests\\api_ui_test_runner.py"
+            // Set PYTHONPATH and run the tests in one command to ensure the environment variable is applied
+            bat "set PYTHONPATH=%PYTHONPATH%;C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject && call ${VENV_DIR}\\Scripts\\python C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject\\tests\\api_ui_test_runner.py"
         }
     }
 }
+
 
             }
  }
