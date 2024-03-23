@@ -39,7 +39,7 @@ pipeline {
                     // Navigate to tests directory
                     bat "cd tests"
                     // Run the test script
-                    bat "call ${VENV_DIR}\\Scripts\\python api_ui_test_runner.py"
+                    bat "call ${VENV_DIR}\\python api_ui_test_runner.py"
                 }
             }
         }
