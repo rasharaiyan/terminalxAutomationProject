@@ -1,13 +1,15 @@
 pipeline {
     agent any
-    environment {
-        // Define the Python virtual environment directory
-        VENV_DIR = 'venv'
-        // Define the project's root directory
-        PROJECT_ROOT = "C:\Users\rasha\PycharmProjects\terminalxAutomationProject"
-        // Define the path to the Python executable
-        PYTHON_PATH = "C:\\Users\\rasha\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
-    }
+     environment {
+    // Define the Python virtual environment directory
+    VENV_DIR = 'venv'
+    // Define the project's root directory
+    PROJECT_ROOT = "C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject"
+    // Define the path to the Python executable
+    PYTHON_PATH = "C:\\Users\\rasha\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+}
+
+
 
     stages {
         stage('Preparation') {
