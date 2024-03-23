@@ -32,16 +32,20 @@ pipeline {
             }
         }
         stage('Run Tests') {
-            steps {
-                script {
-                    // Activate virtual environment
-                    bat "call ${VENV_DIR}\\Scripts\\activate"
-                    // Navigate to tests directory
-                    bat "cd tests"
-                    // Run the test script
-                    bat "call ${VENV_DIR}\\python api_ui_test_runner.py"
-                }
-            }
+        steps {
+          script {
+            // Ensure we're in the project root directory
+            bat "cd ${PROJECT_ROOT}"
+            // Activate the virtual environment
+            bat "call ${VENV_DIR}\\Scripts\\activate"
+            // Navigate to the tests directory
+            bat "cd tests"
+            // Run the test script using the Python interpreter from the virtual environment
+            bat "call ${VENV_DIR}\\Scripts\\python api_ui_test_runner.py"
         }
+    }
+}
+
+
     }
 }
