@@ -4,7 +4,7 @@ pipeline {
         // Define the Python virtual environment directory
         VENV_DIR = 'venv'
         // Define the project's root directory
-        PROJECT_ROOT = "C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject"
+        PROJECT_ROOT = "C:\Users\rasha\PycharmProjects\terminalxAutomationProject"
         // Define the path to the Python executable
         PYTHON_PATH = "C:\\Users\\rasha\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
     }
@@ -31,21 +31,18 @@ pipeline {
                     bat "call ${VENV_DIR}\\Scripts\\pip install -r requirements.txt"
                 }
             }
-        }
-        stage('Run Tests') {
-        steps {
-          script {
-            // Ensure we're in the project root directory
-            bat "cd ${PROJECT_ROOT}"
+        }stage('Run Tests') {
+    steps {
+        script {
             // Activate the virtual environment
             bat "call ${VENV_DIR}\\Scripts\\activate"
-            // Navigate to the tests directory
-            bat "cd tests"
             // Run the test script using the Python interpreter from the virtual environment
-            bat "call ${VENV_DIR}\\Scripts\\python api_ui_test_runner"
+            // Notice the addition of '.py' to the script name and the usage of full path
+            bat "call ${VENV_DIR}\\Scripts\\python ${PROJECT_ROOT}\\tests\\api_ui_test_runner.py"
         }
     }
 }
+
 
 
     }
