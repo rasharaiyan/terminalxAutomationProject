@@ -4,7 +4,7 @@ pipeline {
         // Define the Python virtual environment directory
         VENV_DIR = 'venv'
         // Define the project's root directory,
-        PROJECT_ROOT = 'C:\Users\rasha\PycharmProjects\terminalxAutomationProject'
+        PROJECT_ROOT = "C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject"
     }
     stages {
         stage('Preparation') {
