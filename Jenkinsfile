@@ -3,9 +3,10 @@ pipeline {
     environment {
         // Define the Python virtual environment directory
         VENV_DIR = 'venv'
-        // Define the project's root directory,
+        // Define the project's root directory
         PROJECT_ROOT = "C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject"
-
+        // Define the path to the Python executable
+        PYTHON_PATH = "C:\\Users\\rasha\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
     }
     stages {
         stage('Preparation') {
@@ -20,11 +21,13 @@ pipeline {
                     // Navigate to project's root directory
                     bat "cd ${PROJECT_ROOT}"
                     // Set up virtual environment if it doesn't exist
-                    bat "if not exist ${VENV_DIR} python -m venv ${VENV_DIR}"
+                    bat "if not exist ${VENV_DIR} call \"%PYTHON_PATH%\" -m venv ${VENV_DIR}"
                     // Activate virtual environment
-                    bat "${VENV_DIR}\\Scripts\\activate"
+                    bat "call ${VENV_DIR}\\Scripts\\activate"
+                    // Upgrade pip to the latest version
+                    bat "call ${VENV_DIR}\\Scripts\\python.exe -m pip install --upgrade pip"
                     // Install requirements
-                    bat "pip install -r requirements.txt"
+                    bat "call ${VENV_DIR}\\Scripts\\pip install -r requirements.txt"
                 }
             }
         }
@@ -32,19 +35,13 @@ pipeline {
             steps {
                 script {
                     // Activate virtual environment
-                    bat "${VENV_DIR}\\Scripts\\activate"
+                    bat "call ${VENV_DIR}\\Scripts\\activate"
                     // Navigate to tests directory
-                    bat "cd ${PROJECT_ROOT}\\tests"
+                    bat "cd tests"
                     // Run the test script
-                    bat "python api_ui_test_runner.py"
+                    bat "call ${VENV_DIR}\\Scripts\\python api_ui_test_runner.py"
                 }
             }
-        }
-    }
-    post {
-        always {
-            echo 'Cleaning up'
-            // Add any post-run cleanup here if necessary
         }
     }
 }
