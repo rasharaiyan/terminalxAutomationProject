@@ -8,6 +8,7 @@ pipeline {
         // Define the path to the Python executable
         PYTHON_PATH = "C:\\Users\\rasha\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
     }
+
     stages {
         stage('Preparation') {
             steps {
@@ -41,7 +42,7 @@ pipeline {
             // Navigate to the tests directory
             bat "cd tests"
             // Run the test script using the Python interpreter from the virtual environment
-            bat "call ${VENV_DIR}\\Scripts\\python api_ui_test_runner.py"
+            bat "call ${VENV_DIR}\\Scripts\\python api_ui_test_runner"
         }
     }
 }
