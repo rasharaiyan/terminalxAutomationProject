@@ -32,16 +32,17 @@ pipeline {
             }
         }
         stage('Run Tests') {
-           steps {
-               script {
-                   // Ensure we're in the project root directory
-                  bat "cd ${PROJECT_ROOT}"
-                  // Activate the virtual environment
-                  bat "call ${VENV_DIR}\\Scripts\\activate"
-                 // Run the test script using the Python interpreter from the virtual environment
-                 bat "call ${VENV_DIR}\\Scripts\\python tests\\api_ui_test_runner.py"
-              }
-          }
-       }
+    steps {
+        script {
+            // Activate the virtual environment
+            bat "call ${VENV_DIR}\\Scripts\\activate"
+            // Set PYTHONPATH environment variable
+            bat "set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT}"
+            // Run the test script using the Python interpreter from the virtual environment
+            bat "call ${VENV_DIR}\\Scripts\\python ${PROJECT_ROOT}\\tests\\api_ui_test_runner.py"
+        }
+    }
+}
+
             }
  }

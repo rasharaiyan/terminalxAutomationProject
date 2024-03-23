@@ -5,6 +5,10 @@ from tests.api_tests.test_api_update_item_in_cart_functionality import UpdateInC
 from tests.ui_tests.test_verify_added_product_to_cart import TestVerifyAddedProductToCart
 from tests.ui_tests.test_verify_updated_product_qty_in_cart import TestVerifyUpdatedProductQtyInCart
 from tests.ui_tests.test_verify_deleted_product_from_cart import TestVerifyDeletedProductFromCart
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 
 # Initialize test loader
 loader = unittest.TestLoader()
