@@ -24,7 +24,6 @@ class AddToCartThroughAPI(APITestBase):
 
             response = UserPage.remove_item_from_cart(self.base_url, private_content_version_cookie, counter_cookie,
                                                       PHPSESSID_cookie, item_id)
-            #assert response['data']['removeItemFromAnyCart']['total_quantity'] == 0
 
         response = UserPage.add_to_cart(self.base_url, self.qty, self.sku, private_content_version_cookie, counter_cookie, PHPSESSID_cookie)
         assert response['data']['addAnyProductsToAnyCart']['total_quantity'] == self.qty
