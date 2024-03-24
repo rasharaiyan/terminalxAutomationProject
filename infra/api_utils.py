@@ -16,7 +16,7 @@ class APIUtils:
         else:
             print("POST request failed with status code:", response.status_code)
 
-        # print("Response content:", response.text)
+        print("Response content:", response.text)
         cookies = response.cookies
 
         private_content_version_cookie = cookies.get('private_content_version')
@@ -41,7 +41,7 @@ class APIUtils:
         else:
             print("POST request failed with status code:", response.status_code)
 
-        # print("Response content:", response.text)
+        print("Response content:", response.text)
         return response.json()
 
     @staticmethod
@@ -61,7 +61,7 @@ class APIUtils:
         else:
             print("POST request failed with status code:", response.status_code)
 
-        #print("Response content:", response.text)
+        print("Response content:", response.text)
         return response.json()
 
     @staticmethod
@@ -82,7 +82,7 @@ class APIUtils:
         else:
             print("POST request failed with status code:", response.status_code)
 
-        #print("Response content:", response.text)
+        print("Response content:", response.text)
         return response.json()
 
     @staticmethod
