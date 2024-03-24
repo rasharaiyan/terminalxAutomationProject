@@ -15,7 +15,6 @@ class TestVerifyAddedProductToCart(TestBase):
         self.home_page = HomePage(self.driver)
         self.email = self.config['Tests']['loginCredentials']['email']
         self.password = self.config['Tests']['loginCredentials']['password']
-        self.item_sku=self.config['Tests']['product']['sku']
         self.expected_user_name = self.config['Tests']['loginCredentials']['expected_user_name']
 
 
