@@ -1,3 +1,4 @@
+import time
 import unittest
 from selenium import webdriver
 from logic.login_functionality import Login
@@ -29,9 +30,11 @@ class TestLoginFunctionality(TestBase):
 
         # Click the submit button
         self.login_page.click_submit_login_button()
+        time.sleep(3)
 
         # Wait for the user name label to appear and get its text
         user_name_label_text = self.login_page.get_user_name_label_text()
+        time.sleep(5)
 
         # Assert that the user name label text matches the expected user name
         self.assertEqual(user_name_label_text, self.expected_user_name, "User name label text does not match.")
