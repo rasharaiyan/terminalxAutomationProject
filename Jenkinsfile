@@ -39,20 +39,8 @@ pipeline {
                     // Activate the virtual environment
                     bat "call ${VENV_DIR}\\Scripts\\activate"
                     // Set PYTHONPATH and run the tests in one command to ensure the environment variable is applied
-                    bat "set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT} && call ${VENV_DIR}\\Scripts\\python ${PROJECT_ROOT}\\tests\\api_ui_test_runner.py"
+                    bat "set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT} && call ${VENV_DIR}\\Scripts\\python ${PROJECT_ROOT}\\tests\\api_ui_test_runner.py --html=${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html --self.contained-html"
                 }
-            }
-        }
-        stage('Publish Report') {
-            steps {
-                publishHTML([
-                    allowMissing: false,
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true,
-                    reportDir: "${PROJECT_ROOT}\\${HTML_REPORT_DIR}",
-                    reportFiles: 'report.html',
-                    reportName: "HTML Report"
-                ])
             }
         }
     }
