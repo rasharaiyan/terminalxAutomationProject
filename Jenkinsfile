@@ -7,6 +7,8 @@ pipeline {
         PROJECT_ROOT = "C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject"
         // Define the path to the Python executable
         PYTHON_PATH = "C:\\Users\\rasha\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
+        // Define the directory where HTML reports will be generated
+        HTML_REPORT_DIR = "C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject"
     }
     stages {
         stage('Preparation') {
@@ -32,16 +34,26 @@ pipeline {
             }
         }
         stage('Run Tests') {
-        steps {
-        script {
-            // Activate the virtual environment
-            bat "call ${VENV_DIR}\\Scripts\\activate"
-            // Set PYTHONPATH and run the tests in one command to ensure the environment variable is applied
-            bat "set PYTHONPATH=%PYTHONPATH%;C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject && call ${VENV_DIR}\\Scripts\\python C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject\\tests\\api_ui_test_runner.py"
+            steps {
+                script {
+                    // Activate the virtual environment
+                    bat "call ${VENV_DIR}\\Scripts\\activate"
+                    // Set PYTHONPATH and run the tests in one command to ensure the environment variable is applied
+                    bat "set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT} && call ${VENV_DIR}\\Scripts\\python ${PROJECT_ROOT}\\tests\\api_ui_test_runner.py"
+                }
+            }
+        }
+        stage('Publish Report') {
+            steps {
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: "${PROJECT_ROOT}\\${HTML_REPORT_DIR}",
+                    reportFiles: 'report.html',
+                    reportName: "HTML Report"
+                ])
+            }
         }
     }
 }
-
-
-            }
- }
