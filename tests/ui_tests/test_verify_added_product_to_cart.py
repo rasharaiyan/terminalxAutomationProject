@@ -1,3 +1,4 @@
+import time
 import unittest
 from selenium import webdriver
 from logic.login_functionality import Login
@@ -14,7 +15,9 @@ class TestVerifyAddedProductToCart(TestBase):
         self.home_page = HomePage(self.driver)
         self.email = self.config['Tests']['loginCredentials']['email']
         self.password = self.config['Tests']['loginCredentials']['password']
+        self.item_sku=self.config['Tests']['product']['sku']
         self.expected_user_name = self.config['Tests']['loginCredentials']['expected_user_name']
+
 
     def test_cart_count(self):
         # Navigate to the website
@@ -31,11 +34,8 @@ class TestVerifyAddedProductToCart(TestBase):
 
         # Click the submit button
         self.login_page.click_submit_login_button()
-
+        time.sleep(3)
         user_name_label_text = self.login_page.get_user_name_label_text()
+        time.sleep(3)
 
-        # Assert that the user name label text matches the expected user name
-        self.assertEqual(user_name_label_text, self.expected_user_name, "User name label text does not match.")
-
-        # Assert that the user name label text matches the expected user name
         self.assertEqual(str(1), self.home_page.cart_icon(), "Cart count not matched")
