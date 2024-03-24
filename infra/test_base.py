@@ -16,7 +16,7 @@ class TestBase(unittest.TestCase):
 
     def setUp(self):
         chrome_options = Options()
-        chrome_options.add_argument("--headless")  # Runs Chrome in headless mode.
+        #chrome_options.add_argument("--headless")  # Runs Chrome in headless mode.
         chrome_options.add_argument("--no-sandbox")  # # Bypass OS security model, MUST BE THE VERY FIRST OPTION
         chrome_options.add_argument("--disable-dev-shm-usage")  # overcome limited resource problems
         self.driver = webdriver.Chrome(options=chrome_options)
