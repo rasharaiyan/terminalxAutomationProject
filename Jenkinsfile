@@ -8,7 +8,7 @@ pipeline {
         // Define the path to the Python executable
         PYTHON_PATH = "C:\\Users\\rasha\\AppData\\Local\\Programs\\Python\\Python312\\python.exe"
         // Define the directory where HTML reports will be generated
-        HTML_REPORT_DIR = "C:\\Users\\rasha\\PycharmProjects\\terminalxAutomationProject\\reports"
+        HTML_REPORT_DIR = "reports"
     }
     stages {
         stage('Preparation') {
