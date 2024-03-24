@@ -39,7 +39,7 @@ pipeline {
                     // Activate the virtual environment
                     bat "call ${VENV_DIR}\\Scripts\\activate"
                     // Set PYTHONPATH and run the tests in one command to ensure the environment variable is applied
-                    bat "set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT} && call ${VENV_DIR}\\Scripts\\python ${PROJECT_ROOT}\\tests\\api_ui_test_runner.py"
+                    bat "set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT} && call ${VENV_DIR}\\Scripts\\python ${PROJECT_ROOT}\\tests\\api_tests\\test_api_add_item_to_cart_functionality.py"
                 }
             }
         }
