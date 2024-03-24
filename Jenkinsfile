@@ -50,13 +50,6 @@ pipeline {
                 }
             }
         }
-        stage('Verify Report') {
-            steps {
-                script {
-                    bat "type ${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html"
-                }
-            }
-        }
         stage('Publish Report') {
             steps {
                 publishHTML([
@@ -67,6 +60,13 @@ pipeline {
                     reportFiles: 'report.html',
                     reportName: "HTML Report"
                 ])
+            }
+        }
+        stage('Verify Report') {
+            steps {
+                script {
+                    bat "type ${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html"
+                }
             }
         }
         stage('Archive Reports') {
