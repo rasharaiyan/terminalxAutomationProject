@@ -7,6 +7,7 @@ from tests.ui_tests.test_color_accessibility import TestColorAccessibility
 from tests.ui_tests.test_search_functionallity import SearchFunctionality
 from tests.ui_tests.test_price_sorting import TestPriceSorting
 from tests.ui_tests.test_follow_us_navigation import TestFollowUsNavigation
+from tests.ui_tests.test_login_functionality import TestLoginFunctionality
 
 # Initialize test loader
 loader = unittest.TestLoader()
@@ -20,10 +21,11 @@ accessibility_test=loader.loadTestsFromTestCase(TestColorAccessibility)
 search_functionality_test=loader.loadTestsFromTestCase(SearchFunctionality)
 price_sorting_test=loader.loadTestsFromTestCase(TestPriceSorting)
 follow_us_test=loader.loadTestsFromTestCase((TestFollowUsNavigation))
+login_test=loader.loadTestsFromTestCase(TestLoginFunctionality)
 
 # Create test suite
 test_suite = unittest.TestSuite([add_to_cart_test, wishlist_test, update_quantity_test,usability_test,
-                                 accessibility_test,search_functionality_test,price_sorting_test,follow_us_test])
+                                 accessibility_test,search_functionality_test,price_sorting_test,follow_us_test,login_test])
 
 # Initialize test runner
 test_runner = unittest.TextTestRunner()
