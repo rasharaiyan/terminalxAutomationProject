@@ -38,7 +38,7 @@ pipeline {
         script {
             // Activate the virtual environment
             bat "call ${VENV_DIR}\\Scripts\\activate"
-            bat "set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT} && call ${VENV_DIR}\\Scripts\\python -m pytest ${PROJECT_ROOT}\\tests\\api_tests\\test_api_add_item_to_cart_functionality.py --html=${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html --self-contained-html"
+            bat "set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT} && call ${VENV_DIR}\\Scripts\\python -m pytest ${PROJECT_ROOT}\\tests\\api_ui_test_runner.py --html=${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html --self-contained-html"
             // Check if the report is generated and not empty
             bat "if exist ${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html echo Report generated && dir ${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html"
 
