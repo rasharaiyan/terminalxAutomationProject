@@ -35,6 +35,8 @@ class TestPriceSorting(TestBase):
         first_item_price = self.driver.find_element(By.XPATH, '(//div[@class="listing-content_2Leu"]//div[contains(@class, "final-price_8CiX")])[1]').text
         second_item_price = self.driver.find_element(By.XPATH, '(//div[@class="listing-content_2Leu"]//div[contains(@class, "final-price_8CiX")])[2]').text
 
+        self.driver.execute_script("window.scrollBy(0, 800);")
+
         first_price = self.convert_price_to_float(first_item_price)
         second_price = self.convert_price_to_float(second_item_price)
 
