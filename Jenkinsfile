@@ -34,22 +34,28 @@ pipeline {
             }
         }
         stage('Run Tests') {
-    steps {
-        script {
-            // Activate the virtual environment
-            bat "call ${VENV_DIR}\\Scripts\\activate"
-            bat "set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT} && call ${VENV_DIR}\\Scripts\\python -m pytest ${PROJECT_ROOT}\\tests\\api_tests\\tests_cart_functionality_api.py --html=${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html --self-contained-html"
-            // Check if the report is generated and not empty
-            bat "if exist ${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html echo Report generated && dir ${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html"
-
+            steps {
+                script {
+                    // Combining the commands into a single 'bat' invocation
+                    bat """
+                    call ${VENV_DIR}\\Scripts\\activate
+                    set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT}
+                    ${VENV_DIR}\\Scripts\\python -m pytest ${PROJECT_ROOT}\\tests\\api_tests\\tests_cart_functionality_api.py --html=${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html
+                    """
                 }
             }
         }
-
         stage('List Report') {
             steps {
                 script {
                     bat "dir ${PROJECT_ROOT}\\${HTML_REPORT_DIR}"
+                }
+            }
+        }
+        stage('Verify Report') {
+            steps {
+                script {
+                    bat "type ${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html"
                 }
             }
         }
@@ -63,13 +69,6 @@ pipeline {
                     reportFiles: 'report.html',
                     reportName: "HTML Report"
                 ])
-            }
-        }
-        stage('Verify Report') {
-            steps {
-                script {
-                    bat "type ${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html"
-                }
             }
         }
         stage('Archive Reports') {
