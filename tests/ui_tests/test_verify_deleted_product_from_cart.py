@@ -1,4 +1,3 @@
-import time
 import unittest
 from selenium import webdriver
 from logic.login_functionality import Login
@@ -37,6 +36,5 @@ class TestVerifyDeletedProductFromCart(TestBase):
 
         # Assert that the user name label text matches the expected user name
         self.assertEqual(user_name_label_text, self.expected_user_name, "User name label text does not match.")
-        time.sleep(5)
 
         self.assertTrue(self.home_page.cart_empty_message(), "Cart count is still displayed")
