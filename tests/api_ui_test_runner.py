@@ -1,5 +1,5 @@
 import unittest
-from tests.api_tests.test_api_add_item_to_cart_functionality import AddToCartThroughAPI
+from tests.api_tests.test_add_item_to_cart_through_api import AddToCartThroughAPI
 from tests.api_tests.test_api_remove_item_from_cart_functionality import RemoveFromCartThroughAPI
 from tests.api_tests.test_api_update_item_in_cart_functionality import UpdateInCartThroughAPI
 from tests.ui_tests.test_verify_added_product_to_cart import TestVerifyAddedProductToCart
