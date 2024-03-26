@@ -25,11 +25,11 @@ jobs:
       with:
         chrome-version: latest
 
-
-    - name: Run pytest tests and generate HTML report
-      run: pytest tests/api_ui_test_runner.py --html=report/report.html
+    - name: Run pytest for a specific script
+      run: |
+        cd tests
+        pytest api_ui_test_runner.py --html=../report/report.html
       continue-on-error: true
-
 
     - name: Upload HTML report as artifact
       uses: actions/upload-artifact@v2
