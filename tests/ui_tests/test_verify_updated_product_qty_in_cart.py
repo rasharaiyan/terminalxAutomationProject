@@ -40,5 +40,5 @@ class TestVerifyUpdatedProductQtyInCart(TestBase):
         self.assertEqual(user_name_label_text, self.expected_user_name, "User name label text does not match.")
         time.sleep(5)
 
-        # Assert that the user name label text matches the expected user name
+
         self.assertEqual(str(self.qty_update), self.home_page.cart_icon(), "Cart count not matched")
