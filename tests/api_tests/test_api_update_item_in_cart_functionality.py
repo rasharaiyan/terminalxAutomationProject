@@ -22,11 +22,14 @@ class UpdateInCartThroughAPI(APITestBase):
 
         response = UserPage.get_user_cart_info(self.base_url, private_content_version_cookie, counter_cookie,
                                                PHPSESSID_cookie)
-        assert response['data']['currentUserInfo']['cart_object']['items'][0]['id'] is not None
+        # Check if the cart is not empty before attempting to access its first item
+        if response['data']['currentUserInfo']['cart_object']['items']:
+            item_id = response['data']['currentUserInfo']['cart_object']['items'][0]['id']
+            print(item_id)
 
-        item_id = response['data']['currentUserInfo']['cart_object']['items'][0]['id']
-        print(item_id)
-
-        response = UserPage.update_item_in_cart(self.base_url, self.qty_update, private_content_version_cookie,
-                                                counter_cookie, PHPSESSID_cookie, item_id)
-        assert response['data']['updateAnyCartItems']['items'][0]['quantity'] == self.qty_update
+            # Only attempt to update the cart if it is not empty
+            response = UserPage.update_item_in_cart(self.base_url, self.qty_update, private_content_version_cookie,
+                                                    counter_cookie, PHPSESSID_cookie, item_id)
+            assert response['data']['updateAnyCartItems']['items'][0]['quantity'] == self.qty_update
+        else:
+            self.fail("The cart is empty. Expected at least one item in the cart.")
