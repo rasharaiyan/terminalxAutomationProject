@@ -1,11 +1,12 @@
 from jira import JIRA
 import traceback
+from read_from_env import GetENV
 
 class JiraReport:
 
     def __init__(self):
         self.getenv = GetENV()
-        self.jira_token = self.getenv.get_jira_token()
+        self.jira_token = self.getenv.get_token()
         self.jira_url = "https://rasharaiyanbd24.atlassian.net/"
         self.jira_email = "rasharaiyan00@gmail.com"
         self.jira_project_key = "KAN"
