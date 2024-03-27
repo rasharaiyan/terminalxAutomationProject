@@ -4,7 +4,9 @@
     "queries": [
       {
         "searchQuery": "Tommy Jeans",
-        "expectedResult": "תוצאות חיפוש עבור: 'Tommy Jeans'"
+        "expectedResult": "תוצאות חיפוש עבור: 'Tommy Jeans'",
+        "negativeSearchQuery": "rasha",
+        "expectedSearchQuery": "אין תוצאות לשאילתת חיפוש שלך "
       }
     ],
     "screenSizes": [
