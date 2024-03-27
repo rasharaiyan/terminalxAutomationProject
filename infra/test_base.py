@@ -3,9 +3,13 @@ import json
 from selenium import webdriver
 import os
 from selenium.webdriver.chrome.options import Options
+from jira import JIRA
 
 
 class TestBase(unittest.TestCase):
+    TOKEN = 'ATATT3xFfGF0APBsKmZR8f7eDdkbbVNoE-b_pO2XSUspFVt64RYLq_A4S-yGcjA8D8710Sg3JcTg7jBUm-j9wiXcFK3aW4b3ylnSdlNMhKzm1ZGX7LtEY7zRZUu_Ad86Wh3zSGaizCQrDLxHFrAG3RsvsweDaW4ML3GXknFV-mdSY6py9OFgWu4=630E0F2B'
+    jira_url = 'https://rasharaiyanbd24.atlassian.net/'
+    auth_jira = JIRA(basic_auth=('rasharaiyan00@gmail.com', TOKEN), options={'server': jira_url})
     @classmethod
     def setUpClass(cls):
         base_dir = os.path.dirname(os.path.dirname(__file__))
@@ -25,3 +29,13 @@ class TestBase(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
+
+    def create_issue(self, summary, description, project_key, issue_type="Bug"):
+        issue_dict = {
+            'project': {'key': project_key},
+            'summary': f'failed test: {summary}',
+            'description': description,
+            'issuetype': {'name': issue_type},
+        }
+        new_issue = self.auth_jira.create_issue(fields=issue_dict)
+        return new_issue.key
