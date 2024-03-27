@@ -1,7 +1,12 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+# Load environment variables from .env file
+result = load_dotenv()
+
+# Check if .env file was loaded successfully
+if not result:
+    print("Failed to load .env file")
 
 
 class GetENV:
