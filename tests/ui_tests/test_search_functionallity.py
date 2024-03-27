@@ -19,6 +19,8 @@ class TestSearchFunctionality(TestBase):
         self.base_url = self.config['Tests']['baseURL']
         self.search_query = self.config['Tests']['queries'][0]['searchQuery']
         self.expected_result = self.config['Tests']['queries'][0]['expectedResult']
+        self.negative_search_query = self.config['Tests']['queries'][0]['negativeSearchQuery']
+        self.negative_expected_result = self.config['Tests']['queries'][0]['expectedSearchQuery']
 
     def test_search_functionality(self):
         # Navigate to the website and wait for it to be fully loaded
@@ -29,3 +31,13 @@ class TestSearchFunctionality(TestBase):
         self.search_functionality.perform_search(self.search_query)
         result = self.search_functionality.validate_search_results(self.expected_result)
         self.assertTrue(result, "Search results are not relevant.")
+
+    def test_negative_search_functionality(self):
+        # Navigate to the website and wait for it to be fully loaded
+        self.base_page.navigate_to_site(self.base_url)
+        WebDriverWait(self.driver, 30).until(EC.presence_of_all_elements_located)
+
+        # Perform search and validate results
+        self.search_functionality.perform_search(self.negative_search_query)
+        result = self.search_functionality.validate_negative_search_results(self.negative_expected_result)
+        self.assertTrue(result, "Negative search results are not relevant.")
