@@ -10,6 +10,7 @@ class SearchFunctionality:
     SEARCH_BUTTON_XPATH = "//button[@class='search-button_1ENs']"
     SEARCH_INPUT_XPATH = "//input[@class='input_sILM']"
     SEARCH_RESULT_XPATH = "//div[@class='search-results_2YMu']"
+    NEGATIVE_SEARCH_RESULT_XPATH = "//div[@class='warning_1vFK toast_hN0l rtl_1l4_ full-width_p5rD no-results-toast_1W0U']"
 
     def __init__(self, driver):
         self._driver = driver
@@ -40,3 +41,15 @@ class SearchFunctionality:
             EC.presence_of_element_located((By.XPATH, self.SEARCH_RESULT_XPATH))
         )
         return expected_result.lower() in first_result.text.lower()
+
+
+    def validate_negative_search_results(self, negative_expected_result):
+        time.sleep(5)
+        negative_result_element = WebDriverWait(self._driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, self.NEGATIVE_SEARCH_RESULT_XPATH))
+        )
+        if negative_result_element:
+            return True  # Negative search result found as expected
+        else:
+            return False  # Negative search result not found
+
