@@ -57,7 +57,7 @@ class TestPriceSorting(TestBase):
 
         # Assert that the first item price is lower than the second item price
         try:
-            self.assertTrue(first_price > second_price,
+            self.assertTrue(first_price <= second_price,
                             f"First item price {first_price} is not lower than or equal to second item price {second_price}.")
         except AssertionError:
             # test will fail,create Jira issue in tearDown
