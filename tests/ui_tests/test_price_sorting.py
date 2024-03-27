@@ -60,7 +60,7 @@ class TestPriceSorting(TestBase):
             self.assertTrue(first_price > second_price,
                             f"First item price {first_price} is not lower than or equal to second item price {second_price}.")
         except AssertionError:
-            # Assertion failed, test will fail, but create Jira issue in tearDown
+            # test will fail,create Jira issue in tearDown
             self.test_passed = False
 
     def tearDown(self):
