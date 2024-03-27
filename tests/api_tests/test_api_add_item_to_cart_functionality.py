@@ -5,6 +5,7 @@ from logic.api_page import UserPage
 class AddToCartThroughAPI(APITestBase):
 
     def setUp(self):
+        self.test_passed = None  # Initialize test_passed flag
         self.base_url = self.config['Tests']['baseURL']
         self.email = self.config['Tests']['loginCredentials']['email']
         self.password = self.config['Tests']['loginCredentials']['password']
@@ -33,12 +34,41 @@ class AddToCartThroughAPI(APITestBase):
                                                       PHPSESSID_cookie, item_id)
             assert response['data']['removeItemFromAnyCart'][
                        'total_quantity'] >= 0  # Check this condition based on how your API behaves
+
     def test_add_item_to_cart(self):
-        self.clear_cart()
-        response, private_content_version_cookie, counter_cookie, PHPSESSID_cookie = UserPage.login(self.base_url, self.email,  self.password)
+        try:
+            # Clear the cart before adding an item
+            self.clear_cart()
 
-        assert response['data']['userLogin']['customer_id'] == self.customer_id
+            # Log in and retrieve necessary cookies
+            response, private_content_version_cookie, counter_cookie, PHPSESSID_cookie = UserPage.login(
+                self.base_url, self.email, self.password)
 
-        response = UserPage.add_to_cart(self.base_url, self.qty, self.sku, private_content_version_cookie,
-                                        counter_cookie, PHPSESSID_cookie)
-        assert response['data']['addAnyProductsToAnyCart']['total_quantity'] == self.qty
+            # Assert that the user is logged in successfully
+            assert response['data']['userLogin']['customer_id'] == self.customer_id
+
+            # Add item to cart and assert the quantity
+            response = UserPage.add_to_cart(self.base_url, self.qty, self.sku, private_content_version_cookie,
+                                            counter_cookie, PHPSESSID_cookie)
+            assert response['data']['addAnyProductsToAnyCart']['total_quantity'] == self.qty
+
+            # Set test_passed to True if all actions pass
+            self.test_passed = True
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            # Set test_passed to False if an exception is caught
+            self.test_passed = False
+            # Ensure the exception is re-raised to mark the test as failed
+            raise
+
+    def tearDown(self):
+        if self.test_passed is False:
+            # Create a JIRA issue if the test failed
+            issue_key = self.create_issue(
+                summary=f"Accessibility Test Failed: {self._testMethodName}",
+                description="An error occurred during the test.",
+                project_key='KAN'
+            )
+            print(f"Issue created in Jira: {issue_key}")
+        super().tearDown()
