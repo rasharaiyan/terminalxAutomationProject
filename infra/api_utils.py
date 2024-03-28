@@ -106,5 +106,5 @@ class APIUtils:
             print("POST request failed with status code:", response.status_code)
 
 
-        # print("Response content:", response.text)
+        print("Response content:", response.text)
         return response.json()
