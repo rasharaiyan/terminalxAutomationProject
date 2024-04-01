@@ -6,9 +6,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -28,13 +25,20 @@ jobs:
       with:
         chrome-version: latest
 
+    - name: Load .env file
+      run: |
+        set -o allexport
+        source .env
+        set +o allexport
+
     - name: Set PYTHONPATH
       run: echo "PYTHONPATH=${{ github.workspace }}" >> $GITHUB_ENV
 
     - name: Run pytest for a specific script
       run: |
         pytest tests/api_ui_test_runner.py --html=report/report.html
-      continue-on-error: true
+      env:
+        TOKEN: ${{ secrets.JIRA_TOKEN }}
 
     - name: Upload HTML report as artifact
       uses: actions/upload-artifact@v2
