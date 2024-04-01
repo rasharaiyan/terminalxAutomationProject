@@ -11,12 +11,6 @@ class APIUtils:
 
         response = requests.post(url, json=payload)
 
-        if response.status_code == 200:
-            print("POST request was successful!")
-        else:
-            print("POST request failed with status code:", response.status_code)
-
-        print("Response content:", response.text)
         cookies = response.cookies
 
         private_content_version_cookie = cookies.get('private_content_version')
@@ -35,13 +29,6 @@ class APIUtils:
         payload = {"cart_items": [{"data": {"quantity": qty, "any_sku": ""+sku+""}}], "skip_collect": 1}
 
         response = requests.post(url, json=payload, headers=headers)
-
-        if response.status_code == 200:
-            print("POST request was successful!")
-        else:
-            print("POST request failed with status code:", response.status_code)
-
-        print("Response content:", response.text)
         return response.json()
 
     @staticmethod
@@ -55,13 +42,6 @@ class APIUtils:
         payload = {"withCartObject": True, "withCartItems": True}
 
         response = requests.post(url, json=payload, headers=headers)
-
-        if response.status_code == 200:
-            print("POST request was successful!")
-        else:
-            print("POST request failed with status code:", response.status_code)
-
-        print("Response content:", response.text)
         return response.json()
 
     @staticmethod
@@ -76,13 +56,6 @@ class APIUtils:
                    "skip_collect": 1}
 
         response = requests.post(url, json=payload, headers=headers)
-
-        if response.status_code == 200:
-            print("POST request was successful!")
-        else:
-            print("POST request failed with status code:", response.status_code)
-
-        print("Response content:", response.text)
         return response.json()
 
     @staticmethod
@@ -98,13 +71,4 @@ class APIUtils:
 
         # Send the POST request with the payload
         response = requests.post(url, json=payload, headers=headers)
-
-        # Check the response status code
-        if response.status_code == 200:
-            print("POST request was successful!")
-        else:
-            print("POST request failed with status code:", response.status_code)
-
-
-        print("Response content:", response.text)
         return response.json()
