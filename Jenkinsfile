@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                withCredentials([string(credentialsId: '49c72273-b6fd-4f48-ab10-60efa030384f', variable: 'TOKEN')]) {
+                withCredentials([string(credentialsId: 'token_for_jira', variable: 'TOKEN')]) {
                 }
             }
             }
