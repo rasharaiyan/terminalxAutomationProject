@@ -57,7 +57,7 @@ class TestPriceSorting(TestBase):
 
         # Assert that the first item price is lower than the second item price
         try:
-            self.assertTrue(first_price <= second_price,
+            self.assertTrue(first_price > second_price,
                             f"First item price {first_price} is not lower than or equal to second item price {second_price}.")
         except AssertionError:
             # test will fail,create Jira issue in tearDown
@@ -65,13 +65,7 @@ class TestPriceSorting(TestBase):
 
     def tearDown(self):
         super().tearDown()  # Call the tearDown method of the parent class
-        try:
-            if not self.test_passed:
-                # Assertion failed, create Jira issue
-                jira_report = JiraReport()
-                issue_summary = "Test Assertion Failure"
-                issue_description = "Test failed due to assertion failure or error"
-                jira_report.create_issue(issue_summary, issue_description)
-                print("Issue Created")
-        except Exception as e:
-            print("Failed to report bug to Jira:", str(e))
+        if not self.test_passed:
+            # Assertion failed, create Jira issue using the method from TestBase
+            self.report_jira_issue("Sorting Price Test Assertion Failure",
+                                   "Test failed due to assertion failure that the first price is higher from the second price")
