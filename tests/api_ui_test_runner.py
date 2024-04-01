@@ -5,12 +5,12 @@ from ui_tests.test_price_sorting import TestPriceSorting
 # Initialize test loader
 loader = unittest.TestLoader()
 
-api_add_to_cart = loader.loadTestsFromTestCase(AddToCartThroughAPI)
-add_to_cart_test = loader.loadTestsFromTestCase(TestVerifyAddedProductToCart)
-test_suite = unittest.TestSuite([api_add_to_cart, add_to_cart_test])
+test_api_add_to_cart = loader.loadTestsFromTestCase(AddToCartThroughAPI)
+test_add_to_cart_test = loader.loadTestsFromTestCase(TestVerifyAddedProductToCart)
+test_suite = unittest.TestSuite([test_api_add_to_cart, test_add_to_cart_test])
 test_runner = unittest.TextTestRunner()
 test_runner.run(test_suite)
 
-price_sorting = loader.loadTestsFromTestCase(TestPriceSorting)
-test_suite = unittest.TestSuite([price_sorting])
+test_price_sorting = loader.loadTestsFromTestCase(TestPriceSorting)
+test_suite = unittest.TestSuite([test_price_sorting])
 test_runner.run(test_suite)
