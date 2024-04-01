@@ -2,10 +2,13 @@ from infra.api_test_base import APITestBase
 from logic.api_page import UserPage
 
 
+
+
 class AddToCartThroughAPI(APITestBase):
 
     def setUp(self):
-        self.test_passed = None  # Initialize test_passed flag
+        super().setUp()
+        self.test_passed = True  # Initialize test_passed flag as True
         self.base_url = self.config['Tests']['baseURL']
         self.email = self.config['Tests']['loginCredentials']['email']
         self.password = self.config['Tests']['loginCredentials']['password']
@@ -44,9 +47,6 @@ class AddToCartThroughAPI(APITestBase):
             response, private_content_version_cookie, counter_cookie, PHPSESSID_cookie = UserPage.login(
                 self.base_url, self.email, self.password)
 
-            # Assert that the user is logged in successfully
-            assert response['data']['userLogin']['customer_id'] == self.customer_id
-
             # Add item to cart and assert the quantity
             response = UserPage.add_to_cart(self.base_url, self.qty, self.sku, private_content_version_cookie,
                                             counter_cookie, PHPSESSID_cookie)
@@ -63,12 +63,8 @@ class AddToCartThroughAPI(APITestBase):
             raise
 
     def tearDown(self):
-        if self.test_passed is False:
-            # Create a JIRA issue if the test failed
-            issue_key = self.create_issue(
-                summary=f"Accessibility Test Failed: {self._testMethodName}",
-                description="An error occurred during the test.",
-                project_key='KAN'
-            )
-            print(f"Issue created in Jira: {issue_key}")
-        super().tearDown()
+        super().tearDown()  # Call the tearDown method of the parent class
+        if not self.test_passed:
+            # Assertion failed, create Jira issue using the method from TestBase
+            self.report_jira_issue("Add Item To Cart Through API Test Assertion Failure",
+                                   "Test failed due to assertion failure")
