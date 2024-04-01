@@ -3,6 +3,7 @@ import json
 from selenium import webdriver
 import os
 from selenium.webdriver.chrome.options import Options
+from jirareport import JiraReport
 
 
 
@@ -18,7 +19,7 @@ class TestBase(unittest.TestCase):
 
     def setUp(self):
         chrome_options = Options()
-        chrome_options.add_argument("--headless")  # Runs Chrome in headless mode.
+        #chrome_options.add_argument("--headless")  # Runs Chrome in headless mode.
         chrome_options.add_argument("--no-sandbox")  # # Bypass OS security model, MUST BE THE VERY FIRST OPTION
         chrome_options.add_argument("--disable-dev-shm-usage")  # overcome limited resource problems
         self.driver = webdriver.Chrome(options=chrome_options)
@@ -27,3 +28,11 @@ class TestBase(unittest.TestCase):
 
     def tearDown(self):
         self.driver.quit()
+
+    def report_jira_issue(self, summary, description):
+        try:
+            jira_report = JiraReport()
+            jira_report.create_issue(summary, description)
+            print("Issue Created")
+        except Exception as e:
+            print("Failed to report bug to Jira:", str(e))
