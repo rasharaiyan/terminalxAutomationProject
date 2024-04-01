@@ -11,7 +11,6 @@ class TestPriceSorting(TestBase):
 
     def setUp(self):
         super().setUp()
-        self.test_passed = True  # Initialize test_passed flag as True
         self.search_functionality = SearchFunctionality(self.driver)
         self.base_page = BasePage(self.driver)
         self.base_url = self.config['Tests']['baseURL']
@@ -22,6 +21,9 @@ class TestPriceSorting(TestBase):
         return float(cleaned_price)
 
     def test_sort_price_low_to_high(self):
+        # Initialize test_passed flag as True
+        self.test_passed = True
+
         # Navigate to the site and perform search
         self.base_page.navigate_to_site(self.base_url)
         self.search_functionality.perform_search(self.search_item)
@@ -56,12 +58,10 @@ class TestPriceSorting(TestBase):
         time.sleep(3)
 
         # Assert that the first item price is lower than the second item price
-        try:
-            self.assertTrue(first_price > second_price,
-                            f"First item price {first_price} is not lower than or equal to second item price {second_price}.")
-        except AssertionError:
-            # test will fail,create Jira issue in tearDown
+        if first_price <= second_price:
             self.test_passed = False
+
+        assert first_price > second_price, f"First item price {first_price} is not lower than or equal to second item price {second_price}."
 
     def tearDown(self):
         super().tearDown()  # Call the tearDown method of the parent class
