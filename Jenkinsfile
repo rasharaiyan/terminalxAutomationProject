@@ -11,6 +11,12 @@ pipeline {
         HTML_REPORT_DIR = "reports"
     }
     stages {
+        stage('Build') {
+            steps {
+                withCredentials([string(credentialsId: '49c72273-b6fd-4f48-ab10-60efa030384f', variable: 'TOKEN')]) {
+                }
+            }
+            }
         stage('Preparation') {
             steps {
                 echo 'Checking out SCM'
