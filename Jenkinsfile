@@ -76,5 +76,14 @@ pipeline {
                 archiveArtifacts artifacts: "${HTML_REPORT_DIR}/*", allowEmptyArchive: true
             }
         }
+        stage('Report to Jira') {
+            steps {
+                script {
+                    // Assuming you have a JiraReport class with the required methods
+                    // Call the method to report bugs to Jira
+                    bat "${VENV_DIR}\\Scripts\\python.exe ${PROJECT_ROOT}\\jirareport.py"
+                }
+            }
+        }
     }
 }
