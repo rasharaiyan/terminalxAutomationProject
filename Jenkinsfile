@@ -42,12 +42,15 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    // Combining the commands into a single 'bat' invocation
-                    bat """
-                    call ${VENV_DIR}\\Scripts\\activate
-                    set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT}
-                    ${VENV_DIR}\\Scripts\\python -m pytest ${PROJECT_ROOT}\\tests\\api_ui_test_runner.py --html=${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html
-                    """
+                    // Run tests and catch errors
+                    catchError {
+                        // Combining the commands into a single 'bat' invocation
+                        bat """
+                        call ${VENV_DIR}\\Scripts\\activate
+                        set PYTHONPATH=%PYTHONPATH%;${PROJECT_ROOT}
+                        ${VENV_DIR}\\Scripts\\python -m pytest ${PROJECT_ROOT}\\tests\\api_ui_test_runner.py --html=${PROJECT_ROOT}\\${HTML_REPORT_DIR}\\report.html
+                        """
+                    }
                 }
             }
         }
