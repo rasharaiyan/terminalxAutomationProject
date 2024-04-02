@@ -38,3 +38,30 @@ pytest
 ###### This command installs the JIRA library, which might be necessary if your project interacts with JIRA for issue tracking or other purposes.
 - run pip install jira 
 
+### Running Tests
+Execute test runner from the project Test directory:
+pytest tests\api_ui_test_runner.py
+![image](https://github.com/rasharaiyan/terminalxAutomationProject/assets/117079730/5bdeab5f-533f-4d90-be6e-895de70e0243)
+
+### Continuous Integration
+Jenkins Pipeline: A Jenkinsfile is included to define the pipeline for automated testing. Configure this in your Jenkins setup to run tests automatically on code push or at scheduled intervals.
+Jira Integration: Ensure your Jira project is connected via the API to update issues based on test outcomes.
+
+### Jira snippets:
+![image](https://github.com/rasharaiyan/terminalxAutomationProject/assets/117079730/f9fbdf9f-f6e2-4c99-847c-b6070d622ab3)
+![image](https://github.com/rasharaiyan/terminalxAutomationProject/assets/117079730/a5340bfe-4e57-4481-ba56-97e044b36c35)
+
+### Jenkins Pipline snippets
+![image](https://github.com/rasharaiyan/terminalxAutomationProject/assets/117079730/df4e7d03-b767-48bf-8b32-c8f432d1bd06)
+
+### HTML Test Report
+![image](https://github.com/rasharaiyan/terminalxAutomationProject/assets/117079730/31ede2b8-82b0-48a3-afa2-93d24a7098af)
+![image](https://github.com/rasharaiyan/terminalxAutomationProject/assets/117079730/f6ad5d53-3297-4d13-aff6-7ecf7286cb47)
+
+
+
+
+
+
+
+
