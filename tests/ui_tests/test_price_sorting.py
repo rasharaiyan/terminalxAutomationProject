@@ -59,9 +59,9 @@ class TestPriceSorting(TestBase):
 
         # Assert that the first item price is lower than the second item price
         if first_price <= second_price:
-            self.test_passed = True
+            self.test_passed = False
 
-        assert first_price <= second_price, f"First item price {first_price} is not lower than or equal to second item price {second_price}."
+        assert first_price > second_price, f"First item price {first_price} is not lower than or equal to second item price {second_price}."
 
     def tearDown(self):
         super().tearDown()  # Call the tearDown method of the parent class
